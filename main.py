@@ -12,7 +12,6 @@ SCREEN_WIDTH, SCREEN_HEIGHT = 800, 600
 FPS = 23.976
 LOGO_WIDTH, LOGO_HEIGHT = 227, 100
 win = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("DVD Logo Bounce")
 
 class Logo(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height, color):
@@ -23,14 +22,6 @@ class Logo(pygame.sprite.Sprite):
         self.x_vel = 5
         self.y_vel = 5
         
-        
-
-
-    # def draw(self, win):
-    #     pygame.draw.rect(win, self.color, (self.x, self.y, self.width, self.height))
-    #     pygame.draw.image(self.sprite, rect)
-
-
     def update(self):
         # bounce on screen edges
         if self.rect.left <= 0 or self.rect.right >= SCREEN_WIDTH:
@@ -41,14 +32,9 @@ class Logo(pygame.sprite.Sprite):
         # move
         self.rect.move_ip(self.x_vel, self.y_vel)
 
-            
-
-def draw(win, logo):
-    win.fill("white")
-    logo.draw(win)
-    pygame.display.update()
 
 def main():
+    pygame.display.set_caption("DVD Logo Bounce")
     clock = pygame.time.Clock()
 
     logo = Logo(SCREEN_WIDTH/2 - LOGO_WIDTH/2, SCREEN_HEIGHT/2 - LOGO_HEIGHT/2, LOGO_WIDTH, LOGO_HEIGHT, "blue")
@@ -66,10 +52,8 @@ def main():
                 run = False
                 break
 
-        win.fill("black")
-        
-
         logos.update()
+        win.fill("black")
         logos.draw(win)
         pygame.display.flip()
     
